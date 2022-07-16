@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-This project needs node so be sure to have node and npm installed
+This project uses node so be sure to have node and npm installed
 
 ---
 ## Setup
