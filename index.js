@@ -16,19 +16,33 @@ example
 */
 
 const GetMessages = (string) => {
-    const splittedMessage = string.split(" ");
-    const date = splittedMessage[0];
-    const type = splittedMessage[1].toLowerCase();
-    const mention = `${splittedMessage.splice(0, 3).join(" ")} `;
-    const sentence = splittedMessage.join(" ");
-    return [{
-        date,
-        mention,
-        sentence,
-        type,
-    }]
+  const splittedMessage = string.split(" ");
+  const date = splittedMessage[0];
+  const type = splittedMessage[1].toLowerCase();
+  const mention = `${splittedMessage.splice(0, 3).join(" ")} `;
+  console.log(splittedMessage)
+  const sentence = splittedMessage.join(" ");
+  return {
+    date,
+    mention,
+    sentence,
+    type,
+  }
 }
 
-console.log(GetMessages(InputStep1))
+const SplitMessages = (messages) => {
+  if (messages.includes("\n")) {
+    let ris = [];
+    const arrayMessages = messages.split("\n");
+    arrayMessages.map(sms => {
+      ris.push(GetMessages(sms))
+    })
+    return ris;
+  }
+  else {
+    return [GetMessages(messages)]
+  }
+}
 
-module.exports = GetMessages;    
+console.log(SplitMessages(InputStep2))
+module.exports = { GetMessages, SplitMessages }
