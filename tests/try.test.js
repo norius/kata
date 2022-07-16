@@ -21,13 +21,13 @@ describe('Test', () => {
             expect(NoBackslashNMessages(InputStep4)).toStrictEqual(RisStep4);
         });
 
-        // it('Step 5', async () => {
-        //     expect(GetMessages(InputStep5)).toStrictEqual(RisStep5);
-        // });
+        it('Step 5', async () => {
+            expect(NoBackslashNMessages(InputStep5)).toStrictEqual(RisStep5);
+        });
 
-        // it('Step 6', async () => {
-        //     expect(GetMessages(InputStep6)).toStrictEqual(RisStep6);
-        // });
+        it('Step 6', async () => {
+            expect(NoBackslashNMessages(InputStep6)).toStrictEqual(RisStep6);
+        });
 
         // it('Step 7', async () => {
         //     expect(GetMessages(InputStep7)).toStrictEqual(RisStep7);

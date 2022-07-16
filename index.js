@@ -16,13 +16,27 @@ example
 
 */
 
+const HasntFullName = (str) => {
+  return str.toLowerCase() === 'customer' || str.toLowerCase() === 'agent'
+}
+
 const regex = /\.\d{2}:\d{2}:\d{2}/g;
+let semaforo = true; //I assume the names of the agents are in some sort of DB, without that information I can't tell which is the customer and which is the agent so starting with the customer I interchange customer and agent for the type field
 
 const GetMessages = (string) => {
   const splittedMessage = string.split(" ");
   const date = splittedMessage[0];
-  const type = splittedMessage[1].toLowerCase();
-  const mention = `${splittedMessage.splice(0, 3).join(" ")} `;
+  let type;
+  let mention;
+  if (HasntFullName(splittedMessage[1])) {
+    type = splittedMessage[1].toLowerCase();
+    mention = `${splittedMessage.splice(0, 3).join(" ")} `;
+  }
+  else {
+    type = semaforo ? 'customer' : 'agent';
+    mention = `${splittedMessage.splice(0, 4).join(" ")} `;
+    semaforo = !semaforo;
+  }
   const sentence = splittedMessage.join(" ");
   return {
     date,
@@ -47,6 +61,7 @@ const SplitMessages = (messages) => {
 }
 
 const NoBackslashNMessages = (messages) => {
+  semaforo = true;
   if (regex.test(messages)) {
     let dates = messages.match(regex);
     let lastDatePos = 0;
@@ -63,6 +78,6 @@ const NoBackslashNMessages = (messages) => {
   }
 }
 
-console.log(NoBackslashNMessages(InputStep4))
+console.log(NoBackslashNMessages(InputStep7))
 
 module.exports = { GetMessages, SplitMessages, NoBackslashNMessages }
