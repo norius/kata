@@ -6,27 +6,31 @@ const { InputStep1, InputStep2, InputStep3, InputStep4, InputStep5, InputStep6, 
 describe('Test', () => {
     describe('Test cases', () => {
         it('Step 1', async () => {
-            expect(GetMessages(InputStep1)).toBe(RisStep1);
+            expect(GetMessages(InputStep1)).toStrictEqual(RisStep1);
         });
 
-        it('Step 2', async () => {
-            expect(GetMessages(InputStep2)).toBe(RisStep2);
-        });
+        // it('Step 2', async () => {
+        //     expect(GetMessages(InputStep2)).toStrictEqual(RisStep2);
+        // });
 
-        it('Step 3', async () => {
-            expect(GetMessages(InputStep3)).toBe(RisStep3);
-        });
-        it('Step 4', async () => {
-            expect(GetMessages(InputStep4)).toBe(RisStep4);
-        });
-        it('Step 5', async () => {
-            expect(GetMessages(InputStep5)).toBe(RisStep5);
-        });
-        it('Step 6', async () => {
-            expect(GetMessages(InputStep6)).toBe(RisStep6);
-        });
-        it('Step 7', async () => {
-            expect(GetMessages(InputStep7)).toBe(RisStep7);
-        });
+        // it('Step 3', async () => {
+        //     expect(GetMessages(InputStep3)).toStrictEqual(RisStep3);
+        // });
+
+        // it('Step 4', async () => {
+        //     expect(GetMessages(InputStep4)).toStrictEqual(RisStep4);
+        // });
+
+        // it('Step 5', async () => {
+        //     expect(GetMessages(InputStep5)).toStrictEqual(RisStep5);
+        // });
+
+        // it('Step 6', async () => {
+        //     expect(GetMessages(InputStep6)).toStrictEqual(RisStep6);
+        // });
+
+        // it('Step 7', async () => {
+        //     expect(GetMessages(InputStep7)).toStrictEqual(RisStep7);
+        // });
     });
 });
