@@ -16,6 +16,8 @@ npm i
 
 Theres an input file called messages.txt which is used as a source to parse the messages
 
+This program will generate a file called "messagesParsed.json" as a result
+
 This code does not work if the message terminator swaps between "\n" and "." so for example an input like 
 ```
 14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n
