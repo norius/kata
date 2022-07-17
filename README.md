@@ -37,5 +37,4 @@ To run the test cases use
 ```
 npm run test
 ```
-
 This is a solution for the [THIS](https://github.com/wonderflow-bv/parse-chat-kata/blob/master/ASSIGNMENT.md) kata exercise, inputs and test results were taken from there.
