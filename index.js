@@ -1,25 +1,28 @@
 'use strict';
-const { InputStep1, InputStep2, InputStep3, InputStep4, InputStep5, InputStep6, InputStep7 } = require("./tests/testInputs");
-/*
-example 
-14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-=>
+const fs = require('fs');
 
-[{
-  date: '14:24:32',
-  mention: '14:24:32 Customer : ',
-  sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  type: 'customer'
-}]
+let reader = fs.createReadStream('./messages.txt')
 
-*/
+let fileContent = '';
+
+reader.on("data", chunk => {
+  fileContent += chunk;
+})
+
+reader.on("end", () => {
+  let result = NoColonsMessages(fileContent)
+  console.log(result)
+  fs.writeFile("messagesParsed.json", JSON.stringify(result), () => {
+    console.log("Finished writing file")
+  })
+})
 
 const HasntFullName = (str) => {
   return str.toLowerCase() === 'customer' || str.toLowerCase() === 'agent'
 }
 
-const regex = /\.\d{2}:\d{2}:\d{2}/g;
+const regex = /\.\d{2}:\d{2}:\d{2}/g;  //I assume that each message finishes with a '.' but 
 let semaforo = true; //I assume the names of the agents are in some sort of DB, without that information I can't tell which is the customer and which is the agent so starting with the customer I interchange customer and agent for the type field
 
 const GetMessages = (string, noColon = false) => {
@@ -50,8 +53,9 @@ const GetMessages = (string, noColon = false) => {
 
 const SplitMessages = (messages, noColons = false) => {
   if (messages.includes("\n")) {
+    let arrayMessages = messages.includes("\r\n") ? messages.split("\r\n") : messages.split("\n");
     let ris = [];
-    const arrayMessages = messages.split("\n");
+    console.log("🚀 ~ file: index.js ~ line 70 ~ SplitMessages ~ arrayMessages", arrayMessages)
     arrayMessages.map(sms => {
       ris.push(GetMessages(sms, noColons))
     })
@@ -90,9 +94,6 @@ const checkColons = (msg) => {
 
 const NoColonsMessages = (messages) => {
   return NoBackslashNMessages(messages, !checkColons(messages))
-
 }
-
-console.log(NoColonsMessages(InputStep7))
 
 module.exports = { NoColonsMessages }
